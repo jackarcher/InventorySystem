@@ -155,7 +155,6 @@ public class UserInterface {
 	}
 
 	private void createSection() {
-		// TODO finish this method
 		System.out.print("Please input section capacity:");
 		int capacity = readUserInputInt();
 		int sectionId = WAREHOUSE.createSection(capacity);
@@ -221,7 +220,6 @@ public class UserInterface {
 	}
 
 	private void logout() {
-		// TODO change flag;
 		user.logout();
 		System.out.println("Thanks for using our service, have a nice day!");
 		user = null;
@@ -239,7 +237,6 @@ public class UserInterface {
 	}
 
 	private void printLine() {
-		// TODO finish this method
 		System.out.println("===============================");
 	}
 
@@ -376,7 +373,7 @@ public class UserInterface {
 			System.out.println("Welcome to the XXX Warehouse");
 			System.out.println("\tplease login or regist");
 			System.out.println("\t1.Login");
-			System.out.println("\t2.Regist");
+			System.out.println("\t2.Register as customer");
 			System.out.print("your choice:");
 			choice = readUserInput().toLowerCase();
 			switch (choice) {

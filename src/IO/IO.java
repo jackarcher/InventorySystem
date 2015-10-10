@@ -20,7 +20,7 @@ public class IO {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		try {
-			System.out.println("[TEST USE ONLY]save to file: " + FILE.getAbsolutePath());
+//			System.out.println("[TEST USE ONLY]save to file: " + FILE.getAbsolutePath());
 			fos = new FileOutputStream(FILE);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(wh);
@@ -38,7 +38,7 @@ public class IO {
 		ObjectInputStream ois;
 		Warehouse wh = null;
 		try {
-			System.out.println("[TEST USE ONLY]load from file: " + FILE.getAbsolutePath());
+//			System.out.println("[TEST USE ONLY]load from file: " + FILE.getAbsolutePath());
 			fis = new FileInputStream(FILE);
 			ois = new ObjectInputStream(fis);
 			wh = (Warehouse) ois.readObject();
