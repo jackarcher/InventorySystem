@@ -21,6 +21,10 @@ public class Section {
 		return capacity;
 	}
 
+	public int getFreeCapacity(){
+		return 0;
+	}
+	
 	public boolean setCapacity(int capacity) throws RuntimeException {
 		String error = null;
 		if (capacity <= 0) {
