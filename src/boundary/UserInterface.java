@@ -8,17 +8,32 @@ import entity.*;
 
 public class UserInterface {
 
+	/**
+	 * Indicate the keyboard
+	 */
 	private static final Scanner KEYBOARD = new Scanner(System.in);
 
+	/**
+	 * Indicate the warehouse object
+	 */
 	private static final Warehouse WAREHOUSE = Warehouse.getWarehouse();
 
+	/**
+	 * Indicate the current user, either administrator or the customer
+	 */
 	private User user;
 
+	/**
+	 * default constructor, make the current user null
+	 */
 	public UserInterface() {
 		user = null;
 	}
 
-	private void adminMainMenuScree() {
+	/**
+	 * To display a screen for administrator
+	 */
+	private void adminMainMenuScreen() {
 		String choice;
 		do {
 			printLine();
@@ -64,26 +79,10 @@ public class UserInterface {
 		} while (!choice.equals("x"));
 	}
 
-	private void removeItem() {
-		// TODO change condition
-		if (WAREHOUSE.isEmpty()) {
-			System.out.println("There is nothing to be removed in this warehouse right now.");
-			return;
-		}
-		// Change to removeable ones
-		showAllOrders();
-		System.out.print("Please input an order id: ");
-		int orderId = readUserInputInt();
-		try {
-			if (WAREHOUSE.removeItem(orderId))
-				System.out.println("Revmoe operation done!");
-			else
-				System.out.println("Error");
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
+	/**
+	 * To perform an input feature with appropriate instruction for the
+	 * administrator to input necessary info.
+	 */
 	private void allocateItem() {
 		if (WAREHOUSE.isEmpty()) {
 			System.out.println("There is no section in this warehouse right now.");
@@ -107,53 +106,10 @@ public class UserInterface {
 		}
 	}
 
-	private void showAllOrders() {
-		System.out.println(WAREHOUSE.allOrdersToString());
-	}
-
-	private void removeSection() {
-		if (WAREHOUSE.isEmpty()) {
-			return;
-		}
-		System.out.print("Please input the section ID: ");
-		int sectionId = readUserInputInt();
-		try {
-			if (WAREHOUSE.removeSection(sectionId)) {
-				System.out.println("Removed successfully");
-			} else {
-				System.out.println("Remove fail.");
-			}
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	private void showAllSection(boolean displayPallet) {
-		if (WAREHOUSE.isEmpty()) {
-			System.out.println("There is no section in this warehouse right now.");
-		} else {
-			System.out.println(WAREHOUSE.allSectionsToString(displayPallet));
-		}
-	}
-
-	private void editSection() {
-		if (WAREHOUSE.isEmpty()) {
-			return;
-		}
-		System.out.print("Please input section id:");
-		int sectionId = readUserInputInt();
-		System.out.print("Please input the new capacity");
-		int newCapacity = readUserInputInt();
-
-		try {
-			WAREHOUSE.editSection(sectionId, newCapacity);
-			System.out.println("Edit successfully!");
-		} catch (RuntimeException e) {
-			System.out.println("Error:");
-			System.out.println(e.getMessage());
-		}
-	}
-
+	/**
+	 * To perform an input feature with appropriate instruction for the
+	 * administrator to input necessary info.
+	 */
 	private void createSection() {
 		System.out.print("Please input section capacity:");
 		int capacity = readUserInputInt();
@@ -194,6 +150,24 @@ public class UserInterface {
 		} while (!choice.equals("x"));
 	}
 
+	private void editSection() {
+		if (WAREHOUSE.isEmpty()) {
+			return;
+		}
+		System.out.print("Please input section id:");
+		int sectionId = readUserInputInt();
+		System.out.print("Please input the new capacity");
+		int newCapacity = readUserInputInt();
+
+		try {
+			WAREHOUSE.editSection(sectionId, newCapacity);
+			System.out.println("Edit successfully!");
+		} catch (RuntimeException e) {
+			System.out.println("Error:");
+			System.out.println(e.getMessage());
+		}
+	}
+
 	private void loginScreen() {
 		printLine();
 		System.out.println("Enter your ID & password to login");
@@ -208,7 +182,7 @@ public class UserInterface {
 					customerMainMenuScreen();
 				} else if (user instanceof Administrator) {
 					System.out.println("Login as administrator successful!");
-					adminMainMenuScree();
+					adminMainMenuScreen();
 				}
 			} else {
 				System.out.println("Wrong password");
@@ -303,6 +277,59 @@ public class UserInterface {
 			loginScreen();
 		} else {
 			System.out.println("ID already exist, please try another one");
+		}
+	}
+
+	/**
+	 * To perform an input feature with appropriate instruction for the
+	 * administrator to input necessary info.
+	 */
+	private void removeItem() {
+		// TODO change condition
+		if (WAREHOUSE.isEmpty()) {
+			System.out.println("There is nothing to be removed in this warehouse right now.");
+			return;
+		}
+		// Change to removeable ones
+		showAllOrders();
+		System.out.print("Please input an order id: ");
+		int orderId = readUserInputInt();
+		try {
+			if (WAREHOUSE.removeItem(orderId))
+				System.out.println("Revmoe operation done!");
+			else
+				System.out.println("Error");
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private void removeSection() {
+		if (WAREHOUSE.isEmpty()) {
+			return;
+		}
+		System.out.print("Please input the section ID: ");
+		int sectionId = readUserInputInt();
+		try {
+			if (WAREHOUSE.removeSection(sectionId)) {
+				System.out.println("Removed successfully");
+			} else {
+				System.out.println("Remove fail.");
+			}
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private void showAllOrders() {
+		System.out.println(WAREHOUSE.allOrdersToString());
+	}
+
+	private void showAllSection(boolean displayPallet) {
+		if (WAREHOUSE.isEmpty()) {
+			System.out.println("There is no section in this warehouse right now.");
+		} else {
+			System.out.println(WAREHOUSE.allSectionsToString(displayPallet));
 		}
 	}
 
