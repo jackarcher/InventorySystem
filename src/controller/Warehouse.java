@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.Serializable;
+import java.sql.Savepoint;
 import java.util.*;
 
 import IO.IO;
@@ -15,9 +16,11 @@ public class Warehouse implements Serializable {
 
 	// Singleton pattern
 	public static Warehouse getWarehouse() {
-		warehouse = IO.readFromFile();
 		if (warehouse == null) {
-			warehouse = new Warehouse();
+			warehouse = IO.readFromFile();
+			if (warehouse == null) {
+				warehouse = new Warehouse();
+			}
 		}
 		return warehouse;
 	}
@@ -105,7 +108,13 @@ public class Warehouse implements Serializable {
 				unremovedNumber = pallet.removeItem(unremovedNumber);
 				if (unremovedNumber == 0) {
 					order.setUnremovedNumber(0);
+					if (pallet.isEmpty()) {
+						section.palletMapRemove(palletId);
+					}
+					IO.saveToFile();
 					return true;
+				} else {
+					section.palletMapRemove(palletId);
 				}
 			}
 		}
@@ -155,7 +164,12 @@ public class Warehouse implements Serializable {
 
 	public boolean editSection(int sectionId, int newCapacity) throws RuntimeException {
 		Section section = findSectionById(sectionId);
-		return section.setCapacity(newCapacity);
+		if (section.setCapacity(newCapacity)) {
+			IO.saveToFile();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private Customer findCustomerById(String customerId) throws RuntimeException {
@@ -212,6 +226,7 @@ public class Warehouse implements Serializable {
 			}
 		}
 	}
+	// TODO logout
 
 	public int makeOrder(Customer customer, int itemNumber) {
 		if (itemNumber > 0) {
@@ -231,6 +246,7 @@ public class Warehouse implements Serializable {
 		// Customer customer = new Customer(id, pwd, name, tel, address);
 		Customer customer = new Customer(id, pwd);
 		if (customerMap.putIfAbsent(id, customer) == null) {
+			IO.saveToFile();
 			return true;
 		} else {
 			return false;
@@ -241,11 +257,12 @@ public class Warehouse implements Serializable {
 		Section section = findSectionById(sectionId);
 		if (!section.isEmpty()) {
 			throw new RuntimeException("The indicated section is not empty");
+		} else if (sectionMap.remove(sectionId, section)) {
+			IO.saveToFile();
+			return true;
 		} else {
-			return sectionMap.remove(sectionId, section);
+			return false;
 		}
 	}
-
-	// TODO save to file and read from file.
 
 }

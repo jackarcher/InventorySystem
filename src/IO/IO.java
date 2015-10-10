@@ -19,16 +19,16 @@ public class IO {
 		FileOutputStream fos;
 		ObjectOutputStream oos;
 		try {
-			System.out.println(FILE.getAbsolutePath());
+			// System.out.println(FILE.getAbsolutePath());
 			fos = new FileOutputStream(FILE);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(wh);
 			oos.close();
 			fos.close();
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -37,18 +37,15 @@ public class IO {
 		ObjectInputStream ois;
 		Warehouse wh = null;
 		try {
-			System.out.println(FILE.getAbsolutePath());
+			// System.out.println(FILE.getAbsolutePath());
 			fis = new FileInputStream(FILE);
 			ois = new ObjectInputStream(fis);
 			wh = (Warehouse) ois.readObject();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return wh;

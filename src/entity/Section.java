@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 //TODO section's capacity and pallet map
-public class Section implements Serializable{
+public class Section implements Serializable {
 	private int id;
 	private int capacity;
 	private HashMap<Integer, Pallet> palletMap;
@@ -65,8 +65,8 @@ public class Section implements Serializable{
 	}
 
 	// TODO
-	public void palletMapRemove() {
-
+	public void palletMapRemove(int palletId) {
+		palletMap.remove(palletId);
 	}
 
 	public HashMap<Integer, Pallet> getPalletMap() {
