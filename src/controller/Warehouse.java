@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 
+import comparator.ComparatorForSection;
 import entity.*;
 
 public class Warehouse {
@@ -32,7 +33,7 @@ public class Warehouse {
 
 	public int allocateItem(int orderId) throws RuntimeException {
 		Order order = findOrderById(orderId);
-		if(!order.allocateable() )
+		if (!order.allocateable())
 			throw new RuntimeException("Order is not sutible for allocate operation");
 		Customer customer = findCustomerByOrder(order);
 		if (customer == null)
@@ -55,9 +56,15 @@ public class Warehouse {
 				}
 			}
 		}
+		// TODO sort the map, allocate the
+		// get values, make it list.
+		ArrayList<Section> sectionList = new ArrayList<Section>(sectionMap.values());
+		Collections.sort(sectionList, new ComparatorForSection());
 		// existing not enough
-		for (Integer sectionId : sectionMap.keySet()) {
-			Section section = sectionMap.get(sectionId);
+		// for (Integer sectionId : sectionMap.keySet()) {
+		// Section section = sectionMap.get(sectionId);
+		for (Section section : sectionList) {
+			int sectionId = section.getId();
 			int newPalletId = section.createPallet();
 			while (newPalletId != -1) {
 				Pallet newPallet = section.getPalletMap().get(newPalletId);
@@ -77,7 +84,7 @@ public class Warehouse {
 
 	public boolean removeItem(int orderId) throws RuntimeException {
 		Order order = findOrderById(orderId);
-		if(!order.removable())
+		if (!order.removable())
 			throw new RuntimeException("Order is not suitable for remove operation");
 		Customer customer = findCustomerByOrder(order);
 		if (customer == null)

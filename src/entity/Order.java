@@ -7,7 +7,7 @@ public class Order {
 	private int itemNumber;
 	private int unallocatedNumber;
 	private int unremovedNumber;
-	//TODO
+	//TODO 
 	HashMap<Integer, ArrayList<Integer>> storageMap;
 	// private boolean orderEstablished;
 	// private boolean orderPayed;
