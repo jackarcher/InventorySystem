@@ -31,7 +31,7 @@ public class UserInterface {
 	}
 
 	/**
-	 * To display a screen for administrator
+	 * To perform a menu screen for administrator to interact with
 	 */
 	private void adminMainMenuScreen() {
 		String choice;
@@ -80,8 +80,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * To perform an input feature with appropriate instruction for the
-	 * administrator to input necessary info.
+	 * To perform an input interface for collect necessary info for allocate
+	 * operation
 	 */
 	private void allocateItem() {
 		if (WAREHOUSE.isEmpty()) {
@@ -107,8 +107,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * To perform an input feature with appropriate instruction for the
-	 * administrator to input necessary info.
+	 * To perform an input interface for collect necessary info for create
+	 * section
 	 */
 	private void createSection() {
 		System.out.print("Please input section capacity:");
@@ -122,6 +122,9 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * To perform a menu screen for customer to interact with
+	 */
 	private void customerMainMenuScreen() {
 		String choice;
 		do {
@@ -150,6 +153,9 @@ public class UserInterface {
 		} while (!choice.equals("x"));
 	}
 
+	/**
+	 * To perform an input interface for collect necessary info for edit Section
+	 */
 	private void editSection() {
 		if (WAREHOUSE.isEmpty()) {
 			return;
@@ -168,6 +174,10 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * To perform a login screen for every user(including administrator as well
+	 * as customers) to interact with
+	 */
 	private void loginScreen() {
 		printLine();
 		System.out.println("Enter your ID & password to login");
@@ -193,12 +203,18 @@ public class UserInterface {
 
 	}
 
+	/**
+	 * Perform a logout function, show a message and clear the current user
+	 */
 	private void logout() {
 		user.logout();
 		System.out.println("Thanks for using our service, have a nice day!");
 		user = null;
 	}
 
+	/**
+	 * To perform an input interface for collect necessary info for make order
+	 */
 	private void makeOrder() {
 		System.out.print("Please input the number of item(s): ");
 		int itemNumber = readUserInputInt();
@@ -210,10 +226,20 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * print a split line, can be changed to clear screen if run in other
+	 * platform
+	 */
 	private void printLine() {
 		System.out.println("===============================");
 	}
 
+	/**
+	 * Read the user input for a boolean value, with appropriate instructions,
+	 * make sure the input can be change to a boolean
+	 * 
+	 * @return The boolean value that the user indicate.
+	 */
 	private boolean readUserBoolean() {
 		String[] yes = { "y", "yes", "ok" };
 		String[] no = { "n", "no" };
@@ -238,6 +264,12 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Read the user input for a String value, with appropriate instructions,
+	 * make sure the input valid and not empty
+	 * 
+	 * @return The String value that the user indicate.
+	 */
 	private String readUserInput() {
 		try {
 			String str = KEYBOARD.nextLine();
@@ -253,6 +285,12 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Read the user input for an integer value, with appropriate instructions,
+	 * make sure the input can be change to a integer
+	 * 
+	 * @return The integer value that the user indicate.
+	 */
 	private int readUserInputInt() {
 		try {
 			return Integer.parseInt(readUserInput());
@@ -262,6 +300,9 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * To perform a register screen for customer to interact with
+	 */
 	private void registerScreen() {
 		printLine();
 		System.out.print("ID:");
@@ -281,8 +322,7 @@ public class UserInterface {
 	}
 
 	/**
-	 * To perform an input feature with appropriate instruction for the
-	 * administrator to input necessary info.
+	 * To perform an input interface for collect necessary info for remove item
 	 */
 	private void removeItem() {
 		// TODO change condition
@@ -304,6 +344,10 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * To perform an input interface for collect necessary info for remove
+	 * section
+	 */
 	private void removeSection() {
 		if (WAREHOUSE.isEmpty()) {
 			return;
@@ -321,10 +365,20 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Display all orders in the system
+	 */
 	private void showAllOrders() {
 		System.out.println(WAREHOUSE.allOrdersToString());
 	}
 
+	/**
+	 * Display all Sections, and an optional pallte info to the user.
+	 * 
+	 * @param displayPallet
+	 *            Indicate whether to dispaly the pallet info, being true to
+	 *            display, false to not display
+	 */
 	private void showAllSection(boolean displayPallet) {
 		if (WAREHOUSE.isEmpty()) {
 			System.out.println("There is no section in this warehouse right now.");
@@ -333,16 +387,29 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Start the system.
+	 */
 	public void start() {
 		welcomeScreen();
 	}
 
+	/**
+	 * Display all orders in the param orderMap
+	 * 
+	 * @param orderMap
+	 *            The orders for the current user in a map format to be
+	 *            displayed
+	 */
 	private void viewAllOrders(HashMap<Integer, Order> orderMap) {
 		for (Order order : orderMap.values()) {
 			System.out.println(order);
 		}
 	}
 
+	/**
+	 * To perform a view order screen for customer to interact with
+	 */
 	private void viewOrderScreen() {
 		String choice;
 		HashMap<Integer, Order> orderMap = new HashMap<Integer, Order>();
@@ -379,6 +446,13 @@ public class UserInterface {
 
 	}
 
+	/**
+	 * Perform an input for the user to specific an order to display
+	 * 
+	 * @param orderMap
+	 *            The orders for the current user in a map format to be
+	 *            displayed
+	 */
 	private void viewSelectedOrder(HashMap<Integer, Order> orderMap) {
 		do {
 			System.out.println("Please input order id");
@@ -393,6 +467,9 @@ public class UserInterface {
 		} while (readUserBoolean());
 	}
 
+	/**
+	 * To perform a welcome screen for users to register or login
+	 */
 	private void welcomeScreen() {
 		String choice;
 		do {
