@@ -1,18 +1,21 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.*;
 
+import IO.IO;
 import comparator.ComparatorForSection;
 import entity.*;
 
-public class Warehouse {
+public class Warehouse implements Serializable {
+
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-	// TODO reportList
 	private static Warehouse warehouse;
 
 	// Singleton pattern
 	public static Warehouse getWarehouse() {
+		warehouse = IO.readFromFile();
 		if (warehouse == null) {
 			warehouse = new Warehouse();
 		}
@@ -52,13 +55,14 @@ public class Warehouse {
 				unallocatedNumber = pallet.addItem(unallocatedNumber);
 				if (unallocatedNumber == 0) {
 					order.setUnallocatedNumber(0);
+					IO.saveToFile();
 					return 0;
 				}
 			}
 		}
-		// TODO sort the map, allocate the
 		// get values, make it list.
 		ArrayList<Section> sectionList = new ArrayList<Section>(sectionMap.values());
+		// sort it
 		Collections.sort(sectionList, new ComparatorForSection());
 		// existing not enough
 		// for (Integer sectionId : sectionMap.keySet()) {
@@ -141,6 +145,7 @@ public class Warehouse {
 				if (sectionMap.putIfAbsent(i, null) == null) {
 					Section section = new Section(i, capacity);
 					sectionMap.put(i, section);
+					IO.saveToFile();
 					return i;
 				}
 			}
@@ -240,5 +245,7 @@ public class Warehouse {
 			return sectionMap.remove(sectionId, section);
 		}
 	}
+
+	// TODO save to file and read from file.
 
 }

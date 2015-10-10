@@ -1,12 +1,14 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * this class refers pallet stored in the section.
  * 
  * @author Archer
  *
  */
-public class Pallet {
+public class Pallet implements Serializable {
 	/**
 	 * usedCapacity refers to the number used out of 75 in a pallet
 	 */

@@ -1,6 +1,8 @@
 package entity;
 
-public class Administrator extends User {
+import java.io.Serializable;
+
+public class Administrator extends User implements Serializable {
 
 	private String name;
 
@@ -14,7 +16,6 @@ public class Administrator extends User {
 
 	public Administrator(String id, String pwd) {
 		super(id, pwd);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Administrator(String id, String pwd, String name) {

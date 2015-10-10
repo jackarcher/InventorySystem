@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 //TODO section's capacity and pallet map
-public class Section {
+public class Section implements Serializable{
 	private int id;
 	private int capacity;
 	private HashMap<Integer, Pallet> palletMap;

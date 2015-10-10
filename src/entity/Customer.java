@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Customer extends User {
+public class Customer extends User implements Serializable {
 
 	private String name;
 	private String tel;
