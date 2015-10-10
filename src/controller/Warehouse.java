@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.Serializable;
-import java.sql.Savepoint;
 import java.util.*;
 
 import IO.IO;
@@ -80,12 +79,14 @@ public class Warehouse implements Serializable {
 				customer.storageMapPut(sectionId, newPalletId);
 				if (unallocatedNumber == 0) {
 					order.setUnallocatedNumber(0);
+					IO.saveToFile();
 					return 0;
 				}
 				newPalletId = section.createPallet();
 			}
 		}
 		order.setUnallocatedNumber(unallocatedNumber);
+		IO.saveToFile();
 		return unallocatedNumber;
 	}
 
@@ -234,6 +235,7 @@ public class Warehouse implements Serializable {
 			Order order = new Order(id, itemNumber);
 			orderMap.put(id, order);
 			customer.addOrder(order);
+			IO.saveToFile();
 			return id;
 		}
 		return -1;
