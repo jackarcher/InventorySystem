@@ -72,7 +72,7 @@ public class Warehouse implements Serializable {
 	 * java API.
 	 */
 	private Warehouse() {
-		administrator = new Administrator("admin", "admin");
+		administrator = new Administrator("admin", "admin","J.Archer");
 		orderMap = new HashMap<Integer, Order>(100);
 		sectionMap = new HashMap<Integer, Section>(2000);
 		customerMap = new HashMap<String, Customer>(20);
