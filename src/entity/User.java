@@ -63,8 +63,9 @@ public abstract class User implements Serializable {
 	}
 
 	/**
+	 * Logout the user
 	 * 
-	 * @return
+	 * @return true if successful, false if not
 	 */
 	public boolean logout() {
 		loginFlag = false;
