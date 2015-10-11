@@ -115,7 +115,7 @@ public class UserInterface {
 		int capacity = readUserInputInt();
 		int sectionId = WAREHOUSE.createSection(capacity);
 		if (sectionId == -1) {
-			System.out.println("System error, please try later");
+			System.out.println("Please input a positive capacity");
 		} else {
 			System.out.println("Create section successful!");
 			System.out.println("The section id is " + sectionId);

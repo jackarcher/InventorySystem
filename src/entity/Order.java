@@ -129,7 +129,7 @@ public class Order implements Serializable {
 			sb.append("/");
 			sb.append(itemNumber);
 		} else if (removable()) {
-			sb.append(unremovedNumber == itemNumber ? ", status=stock" : ", status=under remove");
+			sb.append(unremovedNumber == itemNumber ? ", status=in stock" : ", status=under remove");
 			sb.append(", detail: stocked/all =");
 			sb.append(unremovedNumber);
 			sb.append("/");
