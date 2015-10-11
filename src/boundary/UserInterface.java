@@ -37,7 +37,7 @@ public class UserInterface {
 		String choice;
 		do {
 			printLine();
-			System.out.println(user.getId() + ", Welcom to the XXX Warehouse(admin)");
+			System.out.println(user.getId() + ", Welcom to the ABC Warehouse(admin)");
 			System.out.println("Menu:");
 			System.out.println("\t1.Create section");
 			System.out.println("\t2.Edit Section");
@@ -129,7 +129,7 @@ public class UserInterface {
 		String choice;
 		do {
 			printLine();
-			System.out.println(user.getId() + ", Welcom to the XXX Warehouse");
+			System.out.println(user.getId() + ", Welcom to the ABC Warehouse");
 			System.out.println("Menu:");
 			System.out.println("\t1.Make order");
 			System.out.println("\t2.View order status");
@@ -463,7 +463,7 @@ public class UserInterface {
 				System.out.println("The order detail:");
 				System.out.println(orderMap.get(orderId));
 			}
-			System.out.println("Continue check another?");
+			System.out.println("Continue check another?(y/n)");
 		} while (readUserBoolean());
 	}
 
@@ -474,7 +474,7 @@ public class UserInterface {
 		String choice;
 		do {
 			printLine();
-			System.out.println("Welcome to the XXX Warehouse");
+			System.out.println("Welcome to the ABC Warehouse");
 			System.out.println("\tplease login or regist");
 			System.out.println("\t1.Login");
 			System.out.println("\t2.Register as customer");
