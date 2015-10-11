@@ -10,31 +10,19 @@ import java.io.Serializable;
  */
 public class Pallet implements Serializable {
 	/**
-	 * Refers to the number used out of 75 in a pallet
-	 */
-	private int usedCapacity;
-	/**
 	 * The full capacity a pallet can hold.
 	 */
 	private static final int FULL_CAPACITY = 75;
+	/**
+	 * Refers to the number used out of 75 in a pallet
+	 */
+	private int usedCapacity;
 
 	/**
 	 * Constructor to initialize the used capacity to 0
 	 */
 	public Pallet() {
 		usedCapacity = 0;
-	}
-
-	/**
-	 * Exam whether a pallet is empty
-	 * 
-	 * @return true if empty, false if not
-	 */
-	public boolean isEmpty() {
-		if (usedCapacity == 0)
-			return true;
-		else
-			return false;
 	}
 
 	/**
@@ -53,6 +41,18 @@ public class Pallet implements Serializable {
 			usedCapacity += capacity;
 			return itemNumber - capacity;
 		}
+	}
+
+	/**
+	 * Exam whether a pallet is empty
+	 * 
+	 * @return true if empty, false if not
+	 */
+	public boolean isEmpty() {
+		if (usedCapacity == 0)
+			return true;
+		else
+			return false;
 	}
 
 	/**
