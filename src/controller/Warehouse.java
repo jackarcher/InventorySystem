@@ -176,7 +176,9 @@ public class Warehouse implements Serializable {
 			sb.append(section);
 			sb.append(LINE_SEPARATOR);
 			if (displayPallet) {
-				for (Integer palletId : section.getPalletMap().keySet()) {
+				ArrayList<Integer> keyList = new ArrayList<>(section.getPalletMap().keySet());
+				Collections.sort(keyList);
+				for (Integer palletId : keyList) {
 					Pallet pallet = section.getPalletMap().get(palletId);
 					sb.append("\tPallet ID: " + palletId + " " + pallet);
 					sb.append(LINE_SEPARATOR);
