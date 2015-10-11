@@ -72,7 +72,7 @@ public class Warehouse implements Serializable {
 	 * java API.
 	 */
 	private Warehouse() {
-		administrator = new Administrator("admin", "admin","J.Archer");
+		administrator = new Administrator("admin", "admin", "J.Archer");
 		orderMap = new HashMap<Integer, Order>(100);
 		sectionMap = new HashMap<Integer, Section>(2000);
 		customerMap = new HashMap<String, Customer>(20);
@@ -408,21 +408,28 @@ public class Warehouse implements Serializable {
 		// go through every section
 		for (Integer sectionId : storageMap.keySet()) {
 			Section section = findSectionById(sectionId);
-			ArrayList<Integer> palletIdList = storageMap.get(sectionId);
+			ArrayList<Integer> palletIdList = new ArrayList<>(storageMap.get(sectionId));
 			// go through every pallet
 			for (Integer palletId : palletIdList) {
 				Pallet pallet = section.getPalletMap().get(palletId);
 				unremovedNumber = pallet.removeItem(unremovedNumber);
+				if (pallet.isEmpty()) {
+					section.palletMapRemove(palletId);
+					customer.storageMapRemove(sectionId, palletId);
+				}
 				if (unremovedNumber == 0) {
 					order.setUnremovedNumber(0);
-					if (pallet.isEmpty()) {
-						section.palletMapRemove(palletId);
-					}
+					// if (pallet.isEmpty()) {
+					// section.palletMapRemove(palletId);
+					// customer.storageMapRemove(sectionId, palletId);
+					// }
 					IO.saveToFile();
 					return true;
-				} else {
-					section.palletMapRemove(palletId);
 				}
+				// else {
+				// section.palletMapRemove(palletId);
+				// customer.storageMapRemove(sectionId, palletId);
+				// }
 			}
 		}
 		return false;

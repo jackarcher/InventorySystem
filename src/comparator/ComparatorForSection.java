@@ -4,6 +4,7 @@ import entity.Section;
 
 /**
  * The comparator for the section
+ * 
  * @author Archer
  *
  */

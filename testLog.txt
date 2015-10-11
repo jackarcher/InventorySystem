@@ -1,0 +1,28 @@
+1.register
+	===============================
+	Welcome to the XXX Warehouse
+		please login or regist
+		1.Login
+		2.Register as customer
+	your choice:2
+	===============================
+	ID:archer
+	Password:asdf
+	Register successfully
+	
+	db.txt:
+	Changed
+
+2.login
+	===============================
+	Enter your ID & password to login
+	ID:archer
+	Password:asdf
+	Login as customer successful!
+	===============================
+	archer, Welcom to the XXX Warehouse
+	Menu:
+		1.Make order
+		2.View order status
+		x.Logout
+	your choice:
