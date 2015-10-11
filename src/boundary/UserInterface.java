@@ -295,7 +295,7 @@ public class UserInterface {
 		try {
 			return Integer.parseInt(readUserInput());
 		} catch (NumberFormatException e) {
-			System.out.println("Please input just integer");
+			System.out.println("Please input only integer within the range of ±" + Integer.MAX_VALUE);
 			return readUserInputInt();
 		}
 	}
